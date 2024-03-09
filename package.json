@@ -30,12 +30,8 @@
   "sideEffects": false,
   "type": "commonjs",
   "version": "0.0.0",
-  "workspaces": [
-    "inject"
-  ],
   "scripts": {
-    "build": "yarn build:app",
-    "build:app": "craco build",
+    "build": "craco build",
     "lint": "mimir-dev-run-lint",
     "start": "craco start",
     "test": "craco test --passWithNoTests"
