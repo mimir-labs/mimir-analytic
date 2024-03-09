@@ -16,8 +16,7 @@ module.exports = {
     '.yarn/**',
     '/.eslintrc.cjs',
     '/.eslintrc.js',
-    '/.eslintrc.mjs',
-    '/public/mimir-injected.min.js'
+    '/.eslintrc.mjs'
   ],
   parserOptions: {
     ...base.parserOptions,
