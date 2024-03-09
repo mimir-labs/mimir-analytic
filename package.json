@@ -34,7 +34,7 @@
     "inject"
   ],
   "scripts": {
-    "build": "yarn build:code && yarn build:app",
+    "build": "yarn build:app",
     "build:app": "craco build",
     "bundle:inject": "yarn workspace @mimirdev/inject run bundle && cp inject/build/mimir-injectd.min.js public/mimir-injected.min.js",
     "lint": "mimir-dev-run-lint",
