@@ -1,0 +1,16 @@
+{
+  "extends": "@mimirdev/dev/config/tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "paths": {
+      "@mimir-analytic/*": ["./src/*"]
+    },
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "build/**/*",
+    "**/build/**/*",
+    "**/node_modules/**/*"
+  ],
+}

@@ -1,0 +1,88 @@
+{
+  "author": "dev.mimir",
+  "browserslist": {
+    "production": [
+      "chrome >= 67",
+      "edge >= 79",
+      "firefox >= 68",
+      "opera >= 54",
+      "safari >= 14"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "bugs": "https://github.com/mimir-labs/mimir-analytic/issues",
+  "engines": {
+    "node": ">=16"
+  },
+  "homepage": "/",
+  "license": "Apache-2.0",
+  "name": "mimir-analytic",
+  "packageManager": "yarn@4.1.0",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mimir-labs/mimir-analytic.git"
+  },
+  "sideEffects": false,
+  "type": "commonjs",
+  "version": "0.0.0",
+  "workspaces": [
+    "inject"
+  ],
+  "scripts": {
+    "build": "yarn build:code && yarn build:app",
+    "build:app": "craco build",
+    "bundle:inject": "yarn workspace @mimirdev/inject run bundle && cp inject/build/mimir-injectd.min.js public/mimir-injected.min.js",
+    "lint": "mimir-dev-run-lint",
+    "start": "craco start",
+    "test": "craco test --passWithNoTests"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.12",
+    "@mui/lab": "^5.0.0-alpha.165",
+    "@mui/material": "^5.15.10",
+    "@mui/x-data-grid": "^6.19.6",
+    "@polkadot/api": "^10.11.2",
+    "@polkadot/api-derive": "^10.11.2",
+    "@polkadot/react-identicon": "^3.6.4",
+    "@polkadot/types": "^10.11.2",
+    "@polkadot/util": "^12.6.2",
+    "@polkadot/util-crypto": "^12.6.2",
+    "chart.js": "^4.4.2",
+    "copy-to-clipboard": "^3.3.3",
+    "moment": "^2.30.1",
+    "react": "^18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.3",
+    "search-query-parser": "^1.6.0",
+    "store": "^2.0.12",
+    "swr": "^2.2.4"
+  },
+  "devDependencies": {
+    "@craco/craco": "^7.1.0",
+    "@craco/types": "^7.1.0",
+    "@mimirdev/dev": "^0.4.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/jest": "^29.5.12",
+    "@types/json2mq": "^0",
+    "@types/node": "^20.11.17",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@types/store": "^2.0.5",
+    "@types/uuid": "^9.0.8",
+    "crypto-browserify": "^3.12.0",
+    "react-scripts": "^5.0.1"
+  },
+  "resolutions": {
+    "typescript": "5.2.2"
+  }
+}
