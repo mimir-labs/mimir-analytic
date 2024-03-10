@@ -3,6 +3,7 @@
 
 import type { Pagination } from '@mimir-analytic/hooks/types';
 
+import { findEndpoint } from '@mimir-analytic/config';
 import { ANALYTIC_API } from '@mimir-analytic/constants';
 import { useQueryParam } from '@mimir-analytic/hooks';
 import { fetcher } from '@mimir-analytic/utils';
@@ -30,6 +31,7 @@ function Transactions() {
       { field: 'address', headerName: 'Address', sortable: false, renderCell: (item) => encodeAddress(item.row.address), width: 300 },
       { field: 'name', headerName: 'Name', sortable: false, renderCell: (item) => item.row.name || <Chip label='No name' />, width: 140 },
       { field: 'blockTime', headerName: 'Block Time', sortable: false, valueGetter: (item) => new Date(parseInt(item.row.blockTime)), type: 'dateTime', width: 150 },
+      { field: 'genesisHash', headerName: 'Chain', sortable: false, width: 150, renderCell: (item) => findEndpoint(item.row.genesisHash).name || 'Unknown' },
       { field: 'action', headerName: 'TxType', sortable: false, width: 200 },
       { field: 'sendFromMimir', headerName: 'From Mimir', sortable: false, width: 100, type: 'boolean' },
       { field: 'status', headerName: 'Status', sortable: false, width: 100, renderCell: (item) => CalldataStatus[item.row.status] },
