@@ -6,6 +6,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom';
 import BaseContainer from './containers/BaseContainer';
 import PageAccounts from './pages/accounts';
 import PageDashboard from './pages/dashboard';
+import PageTransactionDaily from './pages/transaction-daily';
 import PageTransactions from './pages/transactions';
 
 export const routes = createBrowserRouter([
@@ -23,6 +24,10 @@ export const routes = createBrowserRouter([
       {
         path: '/transactions',
         element: <PageTransactions />
+      },
+      {
+        path: '/transaction-daily',
+        element: <PageTransactionDaily />
       }
     ]
   },
