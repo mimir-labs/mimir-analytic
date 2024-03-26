@@ -3,6 +3,7 @@
 
 import type { PaletteMode } from '@mui/material';
 import type { ThemeOptions } from '@mui/material/styles';
+import type {} from '@mui/x-data-grid/themeAugmentation';
 
 type Func = (mode: PaletteMode) => NonNullable<ThemeOptions['components']>;
 /**
@@ -423,6 +424,20 @@ const createComponents: Func = () => ({
       root: {
         lineHeight: 1.2
       }
+    }
+  },
+
+  MuiDataGrid: {
+    styleOverrides: {
+      iconButtonContainer: ({ theme }) => ({
+        '>.MuiButtonBase-root': {
+          color: theme.palette.text.secondary
+        }
+      }),
+      menuIconButton: ({ theme }) => ({ color: theme.palette.text.secondary }),
+      menu: ({ theme }) => ({
+        '.MuiListItemIcon-root': { color: theme.palette.text.secondary }
+      })
     }
   }
 });
