@@ -29,6 +29,7 @@ function TopBar() {
         <Link to='/'>Dashboard</Link>
         <Link to='/accounts'>accounts</Link>
         <Link to='/transactions'>transactions</Link>
+        <Link to='/transaction-daily'>transaction daily</Link>
       </Box>
     </Box>
   );

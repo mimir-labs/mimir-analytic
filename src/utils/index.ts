@@ -4,3 +4,4 @@
 export * from './common';
 export * as chainLinks from './chain-links';
 export * from './fetcher';
+export * from './string';

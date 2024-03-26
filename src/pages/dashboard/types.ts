@@ -4,6 +4,7 @@
 export type NewAccountDaily = {
   time: string;
   counts: number;
+  mimirCounts: number;
 };
 
 export type BalancesDaily = {

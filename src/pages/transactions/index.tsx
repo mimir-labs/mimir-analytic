@@ -30,7 +30,7 @@ function Transactions() {
     () => [
       { field: 'address', headerName: 'Address', sortable: false, renderCell: (item) => encodeAddress(item.row.address), width: 300 },
       { field: 'name', headerName: 'Name', sortable: false, renderCell: (item) => item.row.name || <Chip label='No name' />, width: 140 },
-      { field: 'blockTime', headerName: 'Block Time', sortable: false, valueGetter: (item) => new Date(parseInt(item.row.blockTime)), type: 'dateTime', width: 150 },
+      { field: 'blockTime', headerName: 'Block Time', sortable: false, valueGetter: (_, item) => new Date(parseInt(item.blockTime)), type: 'dateTime', width: 150 },
       { field: 'genesisHash', headerName: 'Chain', sortable: false, width: 150, renderCell: (item) => findEndpoint(item.row.genesisHash).name || 'Unknown' },
       { field: 'action', headerName: 'TxType', sortable: false, width: 200 },
       { field: 'sendFromMimir', headerName: 'From Mimir', sortable: false, width: 100, type: 'boolean' },

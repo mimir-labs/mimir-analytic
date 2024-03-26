@@ -25,4 +25,7 @@ export interface AccountData {
   ksm_balance: string;
   ksm_balance_usd: string;
   total_usd: string;
+  utm_campaign: string | null;
+  utm_medium: string | null;
+  utm_source: string | null;
 }
