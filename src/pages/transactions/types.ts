@@ -13,7 +13,6 @@ export enum CalldataStatus {
 }
 
 export interface TransactionData {
-  id: number;
   address: HexString;
   name?: string | null;
   action?: string | null;

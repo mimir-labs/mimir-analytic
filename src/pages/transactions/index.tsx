@@ -46,7 +46,7 @@ function Transactions() {
 
     fetchData(page, limit)
       .then((data) => {
-        setData(data.items);
+        setData(data.items.map((item) => ({ ...item, id: item.calldataUuid })));
         setPaginationModel({
           page: data.page - 1,
           pageSize: data.limit
