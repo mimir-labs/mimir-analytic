@@ -4,8 +4,7 @@
 import type { BalancesDaily, NewAccountDaily, TransactionsDaily } from './types';
 
 import { ANALYTIC_API } from '@mimir-analytic/constants';
-import { Box, useTheme } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2';
+import { Box, Grid2 as Grid, useTheme } from '@mui/material';
 import useSWR from 'swr';
 
 import Balances from './Balances';
@@ -20,24 +19,16 @@ function Dashboard() {
 
   return (
     <Box>
-      <Grid columns={{ xs: 12 }} container spacing={{ xs: 2, sm: 4 }}>
-        <Grid md={6} xs={12}>
-          {newAccountData && <NewAccount data={newAccountData} />}
-        </Grid>
-        <Grid md={6} xs={12}>
-          {transactionsData && <Transactions data={transactionsData} />}
-        </Grid>
-        <Grid md={6} xs={12}>
+      <Grid columns={12} container spacing={{ xs: 2, sm: 4 }}>
+        <Grid size={{ md: 6, xs: 12 }}>{newAccountData && <NewAccount data={newAccountData} />}</Grid>
+        <Grid size={{ md: 6, xs: 12 }}>{transactionsData && <Transactions data={transactionsData} />}</Grid>
+        <Grid size={{ md: 6, xs: 12 }}>
           {balancesData && (
             <Balances balanceKeys={['dot_balance_usd', 'ksm_balance_usd', 'total_usd']} colors={['rgb(230, 0, 122)', '#000', palette.primary.main]} data={balancesData} title='USD Balances' />
           )}
         </Grid>
-        <Grid md={6} xs={12}>
-          {balancesData && <Balances balanceKeys={['dot_balance']} colors={['rgb(230, 0, 122)']} data={balancesData} title='DOT Balance' />}
-        </Grid>
-        <Grid md={6} xs={12}>
-          {balancesData && <Balances balanceKeys={['ksm_balance']} colors={['rgb(230, 0, 122)']} data={balancesData} title='KSM Balance' />}
-        </Grid>
+        <Grid size={{ md: 6, xs: 12 }}>{balancesData && <Balances balanceKeys={['dot_balance']} colors={['rgb(230, 0, 122)']} data={balancesData} title='DOT Balance' />}</Grid>
+        <Grid size={{ md: 6, xs: 12 }}>{balancesData && <Balances balanceKeys={['ksm_balance']} colors={['rgb(230, 0, 122)']} data={balancesData} title='KSM Balance' />}</Grid>
       </Grid>
     </Box>
   );
