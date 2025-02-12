@@ -11,10 +11,10 @@ export function accountExplorerLink(genesisHash?: string, value?: AccountId | Ac
   const _value = value?.toString();
 
   if (_value && _value.length > 47 && isAddress(_value)) {
-    const { chainSS58, explorerUrl } = allEndpoints.find((item) => item.genesisHash === genesisHash) || {};
+    const { explorerUrl, ss58Format } = allEndpoints.find((item) => item.genesisHash === genesisHash) || {};
 
     if (explorerUrl) {
-      return `${explorerUrl}account/${encodeAddress(_value, chainSS58)}`;
+      return `${explorerUrl}account/${encodeAddress(_value, ss58Format)}`;
     }
   }
 

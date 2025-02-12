@@ -49,6 +49,7 @@ export enum TransactionType {
 }
 export interface TransactionResponse {
   address: HexString;
+  realAddress?: HexString | null;
   appName?: string | null;
   cancelling?: HexString | null;
   createdAt: string;

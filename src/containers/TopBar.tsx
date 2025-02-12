@@ -26,15 +26,10 @@ function TopBar() {
         <img src={Logo} style={{ width: 87 }} />
       </Link>
       <Box sx={{ display: 'flex', gap: 2 }}>
-        <Link to='/dashboard'>Dashboard V2</Link>
-        <Link to='/proxy'>Proxy</Link>
-        <Link to='/transactions-v2'>Transactions V2</Link>
-      </Box>
-      <Box sx={{ display: 'flex', gap: 2 }}>
         <Link to='/'>Dashboard</Link>
         <Link to='/accounts'>accounts</Link>
+        <Link to='/proxy'>Proxy</Link>
         <Link to='/transactions'>transactions</Link>
-        <Link to='/transaction-daily'>transaction daily</Link>
       </Box>
     </Box>
   );

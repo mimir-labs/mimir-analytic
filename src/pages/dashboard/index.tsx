@@ -1,36 +1,36 @@
 // Copyright 2023-2024 dev.mimir authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BalancesDaily, NewAccountDaily, TransactionsDaily } from './types';
+import type { HexString } from '@polkadot/util/types';
 
-import { ANALYTIC_API } from '@mimir-analytic/constants';
-import { Box, Grid2 as Grid, useTheme } from '@mui/material';
-import useSWR from 'swr';
+import { allEndpoints } from '@mimir-analytic/config';
+import { useQueryParam } from '@mimir-analytic/hooks';
+import { Box, Tab, Tabs } from '@mui/material';
 
-import Balances from './Balances';
-import NewAccount from './NewAccount';
-import Transactions from './Transactions';
+import ProxyDaily from './ProxyDaily';
+import TransactionDaily from './TransactionDaily';
 
 function Dashboard() {
-  const { data: newAccountData } = useSWR<NewAccountDaily[]>(`${ANALYTIC_API}history/new-accounts`);
-  const { data: balancesData } = useSWR<BalancesDaily[]>(`${ANALYTIC_API}history/balances`);
-  const { data: transactionsData } = useSWR<TransactionsDaily[]>(`${ANALYTIC_API}history/transactions`);
-  const { palette } = useTheme();
+  const [tab, setTab] = useQueryParam<'tx' | 'proxy'>('tab', 'tx');
+  const [chain, setChain] = useQueryParam<string>('chain', allEndpoints[0].key);
+  const genesisHash: HexString = allEndpoints.find((item) => item.key === chain)?.genesisHash || '0x';
 
   return (
-    <Box>
-      <Grid columns={12} container spacing={{ xs: 2, sm: 4 }}>
-        <Grid size={{ md: 6, xs: 12 }}>{newAccountData && <NewAccount data={newAccountData} />}</Grid>
-        <Grid size={{ md: 6, xs: 12 }}>{transactionsData && <Transactions data={transactionsData} />}</Grid>
-        <Grid size={{ md: 6, xs: 12 }}>
-          {balancesData && (
-            <Balances balanceKeys={['dot_balance_usd', 'ksm_balance_usd', 'total_usd']} colors={['rgb(230, 0, 122)', '#000', palette.primary.main]} data={balancesData} title='USD Balances' />
-          )}
-        </Grid>
-        <Grid size={{ md: 6, xs: 12 }}>{balancesData && <Balances balanceKeys={['dot_balance']} colors={['rgb(230, 0, 122)']} data={balancesData} title='DOT Balance' />}</Grid>
-        <Grid size={{ md: 6, xs: 12 }}>{balancesData && <Balances balanceKeys={['ksm_balance']} colors={['rgb(230, 0, 122)']} data={balancesData} title='KSM Balance' />}</Grid>
-      </Grid>
-    </Box>
+    <>
+      <Tabs onChange={(_, value) => setChain(value)} value={chain} variant='scrollable'>
+        {allEndpoints.map((item) => (
+          <Tab key={item.key} label={item.name} value={item.key} />
+        ))}
+      </Tabs>
+      <Box sx={{ padding: 2 }}>
+        <Tabs onChange={(_, value) => setTab(value)} value={tab}>
+          <Tab label='Transactions' value='tx' />
+          <Tab label='Proxy' value='proxy' />
+        </Tabs>
+        <Box>{tab === 'tx' && <TransactionDaily genesisHash={genesisHash} />}</Box>
+        <Box>{tab === 'proxy' && <ProxyDaily genesisHash={genesisHash} />}</Box>
+      </Box>
+    </>
   );
 }
 
